@@ -1,27 +1,12 @@
 import { FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { BreadcrumbsComponent } from './Breadcrumbs/Breadcrumbs';
 
 export const HeaderComponent: FC = () => {
-    const location = useLocation();
-    const paths = location.pathname.split('/').filter((x) => x !== '');
-    const lastPath = paths.splice(paths.length - 1);
-
     return (
         <header>
             <nav className="navbar container" aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item active" aria-current="page" key="path-0">
-                        <Link to="/">Home</Link>
-                    </li>
-                    {paths.map((path, id) => (
-                        <li className="breadcrumb-item" aria-current="page" key={`path-${id}`}>
-                            <Link to={path}>{path}</Link>
-                        </li>
-                    ))}
-                    <li className="breadcrumb-item active" aria-current="page">
-                        {lastPath}
-                    </li>
-                </ol>
+                <BreadcrumbsComponent />
             </nav>
 
             <nav className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
